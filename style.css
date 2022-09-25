@@ -1,0 +1,119 @@
+*{
+    margin: auto;
+}
+
+:root{
+    --colorDice: black;
+}
+
+html, body{
+    width: 100%;
+    margin: 0;
+}
+
+body{
+    background-color: rgba(119, 136, 153, 0.315);
+}
+.flexCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diceContainer{
+    position: absolute;
+    top: 25vh;
+    left: 30vw;
+    height: 50vh;
+    width: 40vw;
+    /* background-color: red; */
+    perspective: 1000px;
+}
+
+.dice{
+    --diceSize: 200px;
+    height: var(--diceSize);
+    width: var(--diceSize);
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: 10s showAll infinite ease-in-out alternate;
+}
+.card{
+    height: var(--diceSize);
+    width: var(--diceSize);
+    border: 4px solid var(--colorDice);
+    background-color: white;
+    /* color: white; */
+    font-size: 30px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.cardLeft{
+    left: calc(var(--diceSize)/2);
+    transform: rotateY(90deg);
+}
+.cardRight{
+    right: calc(var(--diceSize)/2);
+    transform: rotateY(-90deg);
+}
+.cardTop{
+    top: calc(var(--diceSize)/2);
+    transform: rotateX(90deg);
+}
+.cardBottom{
+    bottom: calc(var(--diceSize)/2);
+    transform: rotateX(-90deg);
+}
+.cardFront{
+    transform: translateZ(calc(var(--diceSize)/2));
+}
+.cardBack{
+    transform: translateZ(calc(var(--diceSize)/-2));
+}
+
+.diceFace{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 1px;
+    grid-row-gap: 1px;
+}
+.point{
+    background-color: var(--colorDice);
+    border-radius: 50%;
+    width: 60%;
+    height: 60%;
+}
+.voidPoint{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+
+
+@keyframes showAll{
+    0%{
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+        --colorDice: black;
+    }
+    
+    25%{
+        --colorDice: blue;
+    }
+    
+    50%{
+        --colorDice: orange;
+        transform: rotateX(333deg) rotateY(444deg) rotateZ(555deg);
+    }
+    75%{
+        --colorDice: green;
+    }
+    100%{
+        --colorDice: red;
+        transform: rotateX(-60deg) rotateY(-600deg) rotateZ(-400deg);
+    }
+}
